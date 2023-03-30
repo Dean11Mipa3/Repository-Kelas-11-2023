@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adding List</title>
+    <style>
+        html, body{
+            height: 100%;
+            /* width: 100%; */
+        }
+
+        body{
+            display: table;
+            margin-left: 40%;
+        }
+        
+        html{
+            background-image: url('back.png');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            /* background-color: aqua; */
+        }
+
+        /* form{
+            color: blue;
+        } */
+
+        img{
+            width: 230px;
+            margin-top: 50%;
+            /* margin-top: 500px ; */
+        }
+
+        ul {
+            list-style: none; /* Remove default bullets */
+        }
+
+        ul li::before {
+            content: "\00BB";
+            color: rgb(39, 35, 35);
+            font-weight: bold; 
+            display: inline-block; 
+            width: 1em; 
+            margin-left: -2.5em; 
+        }
+
+        h3{
+            color: rgb(37, 34, 34);
+        }
+
+        /* header nav ul{
+            list-style: none;t
+        } */
+        
+        
+        /* img{
+            float: left;
+        } */
+
+        /* body{
+            display: table-cell;
+            margin: auto auto;
+            background-image: linear-gradient(blue, green);
+        } */
+    </style>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            document.querySelector("#submit-task").disabled = true;
+
+            document.querySelector("#entry-task").onkeyup = function () {
+
+                if (document.querySelector("#entry-task").value.trim().length >0){
+                    document.querySelector("#submit-task").disabled = false;
+                } else {
+                    document.querySelector("#submit-task").disabled = true;
+                }
+
+            }
+
+            document.querySelector("#entry-task").onkeydown = function () {
+
+                if (document.querySelector("#entry-task").value.trim().length >0){
+                    document.querySelector("#submit-task").disabled = false;
+                } else {
+                    document.querySelector("#submit-task").disabled = true;
+                }
+
+            }
+
+            document.querySelector("#form-task").onsubmit = function () {
+
+                const li = document.createElement('li');
+
+                li.innerHTML = document.querySelector("#entry-task").value;
+
+
+                document.querySelector("#tasks").append(li);
+
+                document.querySelector("#entry-task").value ="";
+
+                document.querySelector("#submit-task").disabled = true;
+
+                return false;
+
+
+            }
+
+        })
+
+    </script>
+</head>
+<body>
+    <!-- <header>
+        <nav>
+            <div class="nav-google-search">
+                <h3>Google</h3>
+            </div>
+            
+            <ul class="nav-item temples-nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Recent</a></li>
+                <li><a href="#">History</a></li>
+                <li><a href="#">Setting</a></li>
+            </ul>
+        </nav>
+    </header> -->
+    <img src="logo2.png" alt="">
+    
+    <form id="form-task">
+        <input type="text" name="" id="entry-task" placeholder="Google Search" autocomplete="off">
+        <input type="submit" name="" value="search" id="submit-task">
+    </form>
+    <h3>History : </h3>
+    <ul id="tasks"></ul>
+</body>
+</html>
